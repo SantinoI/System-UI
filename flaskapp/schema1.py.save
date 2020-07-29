@@ -1,0 +1,37 @@
+from sistemi import *
+
+def schema1_evaluate(equations,time,input):
+    A,B = sistema(equations['G1']['y2'],equations['G1']['y1'],equations['G1']['y'],equations['G1']['u'])
+    print(A,B)
+    vettore_tempi = []
+    vettore_output = []
+    G1 = secondDegree(A,B)
+    t = 0
+    delta_t = 1e-3
+    while t <= int(time):
+        y = G1.evaluate(int(input),delta_t)
+        vettore_tempi.append(t)
+        vettore_output.append(float(y))
+        t = t + delta_t
+    auto_val = autovalori(equations['G1']['y'],equations['G1']['y1'])
+    return vettore_tempi, vettore_output, auto_val
+
+
+def schema2_evaluate(equations,time,input):
+    A1,B1 = sistema(equations['G1']['y2'],equations['G1']['y1'],equations['G1']['y'],equations['G1']['u'])
+    A2,B2 = sistema(equations['G2']['y2'],equations['G2']['y1'],equations['G2']['y'],equations['G2']['u'])
+    vettore_tempi = []
+    vettore_output = []
+    G1 = secondDegree(A1,B1)
+    G2 = secondDegree(A2,B2)
+    t = 0
+    delta_t = 1e-3
+    while t <= int(time):
+        g1_out = G1.evaluate(int(input),delta_t)
+        y = G2.evaluate(g1_out,delta_t)
+        vettore_tempi.append(t)
+        vettore_output.append(float(y))
+        t = t + delta_t
+    auto_val_1 = autovalori(equations['G1']['y'],equations['G1']['y1'])
+        auto_val_2  = autovalori(equations['G2']['y'],equations['G2']['y1'])    
+    return vettore_tempi, vettore_output, auto_val_1, auto_val_2
