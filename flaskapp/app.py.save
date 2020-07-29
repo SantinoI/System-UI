@@ -1,0 +1,22 @@
+from flask import Flask, jsonify,request
+import json
+
+app = Flask(__name__)
+
+@app.route('/')
+def ciao():
+	return "ciao"
+
+@app.route('/system', methods=['POST']) 
+def input():
+    data = request.form.to_dict(flat=False)
+    final = json.loads(data.get('system')[0])
+    equations = final.get('equations')
+    time = final.get('time')
+    input = final.get('input')
+    flow = final.get('flow')
+    print(equations,time,input,flow)
+    print(equations['G1']['y2'])
+    #autovalori(equations['G1']['y2'],equations['G1']['y1'],equations['G1']['y'],equations['G1']['u'])
+    
+return jsonify({'time': [0,1,2,3,4,5,6],'output': [0,1,2,3,4,5,6]})

@@ -1,0 +1,42 @@
+from flask import Flask, jsonify,request
+import json
+from flask_cors import CORS
+from sistemi import *
+import sympy
+import numpy
+
+app = Flask(__name__)
+CORS(app)
+
+@app.route('/')
+def ciao():
+	return "ciao"
+
+@app.route('/system', methods=['POST']) 
+def input():
+    delta_t = 1e-3
+
+    data = request.form.to_dict(flat=False)
+    final = json.loads(data.get('system')[0])
+    equations = final.get('equations')
+    time = final.get('time')
+    input = final.get('input')
+    flow = final.get('flow')
+    print(equations,time,input,flow)
+    print(equations['G1']['y2'])
+    A,B = autovalori(equations['G1']['y2'],equations['G1']['y1'],equations['G1']['y'],equations['G1']['u'])
+    print(A,B)
+    vettore_tempi = []
+  0  vettore_output = []
+    G1 = secondDegree(A,B)
+    t = 0
+    while t <= int(time):
+        y = G1.evaluate(int(input),delta_t)
+        vettore_tempi.append(t)
+        vettore_output.append(y)
+        t = t + delta_t
+   
+    #tempi= json.dumps(vettore_tempi)
+    #out = json.dumps(vettore_output)
+    #print(data)
+    return jsonify({"output":vettore_output})

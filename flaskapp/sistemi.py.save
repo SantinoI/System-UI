@@ -1,0 +1,13 @@
+import numpy
+import sympy
+
+def autovalori(y2,y1,y,u):
+    print(y2,y1,y,u)
+    delta_t = sympy.symbols('delta_t')
+    a = sympy.Matrix([[0,1],[y,y1]])
+    b = sympy.Matrix([0, u])
+    i =  sympy.Matrix([[1, 0], [0, 1]])
+    a_deltaT = a*delta_t
+    a_deltaT_I = (a_delta + i)
+    b_deltaT = b*deltaT
+    return a_deltaT_I, b_deltaT
