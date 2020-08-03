@@ -12,11 +12,12 @@ def choose_system(equations):
             print("primo grado y = 1")
             A = float(equations['y'])/float(equations['y1']) * -1
             B = float(equations['u'])/float(equations['y1']) * -1
+            print(A,"-----------------",B)
         else:
             print("primo grado y != 1")
             A = float(equations['y'])/float(equations['y1']) * -1
             B = float(equations['u'])/float(equations['y1']) * -1
-            
+            print(A,"-----------------",B)
         G1 = firstDegree(A,B)
         auto_val = stability1(A)
         if auto_val < 0:
