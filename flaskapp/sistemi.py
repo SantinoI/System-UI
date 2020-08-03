@@ -41,7 +41,6 @@ class secondDegree:
         return output
 
 def sistema(y2,y1,y,u):
-    print(type(y1,y,u))
     delta_t = symbols('delta_t')
     a = Matrix([[0,1],[y,y1]])
     b = Matrix([0, u])
