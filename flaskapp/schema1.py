@@ -169,12 +169,16 @@ def schema1_evaluate_controller(equations,time,input,controller):
 def schema3_evaluate_controller(equations,time,input,controller):
 
     if(controller['type'] == 'PI'):
+        print("Selezionato controllore: PI")
         ctrl = PID(float(controller['kp']),float(controller['ki']),0)
     elif(controller['type'] == 'PI +Sat'):
+        print("Selezionato controllore: PI + sat")
         ctrl = PIDSat(float(controller['kp']),float(controller['ki']),0,float(controller['sat']))
     elif(controller['type'] == 'PID'):
+        print("Selezionato controllore: PID")
         ctrl = PID(float(controller['kp']),float(controller['ki']),float(controller["kd"]))
     elif(controller['type'] == 'PID + Sat'):
+        print("Selezionato controllore: PID + sat")
         ctrl = PIDSat(float(controller['kp']),float(controller['ki']),float(controller['kd']),float(controller['sat']))
     
     len_ref = len(controller["ref"])
