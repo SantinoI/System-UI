@@ -16,7 +16,6 @@ class PID:
         return output
 
 class PIDSat:
-
     def __init__(self, kp, ki, kd, sat):
         self.kp = kp
         self.ki = ki
@@ -25,8 +24,8 @@ class PIDSat:
         self.integral = 0
         self.prev_error = 0
         self.saturation_flag = False
-
-    def evaluate(self,error,delta_t):
+    def evaluate(self,error, delta_t):
+        #error = target - current
         if not(self.saturation_flag):
             self.integral = self.integral + error * delta_t
         deriv = (error - self.prev_error) / delta_t
