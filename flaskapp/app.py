@@ -2,7 +2,7 @@ from flask import Flask, jsonify,request
 import json
 from flask_cors import CORS
 from sistemi import *
-from schema1 import *
+from schemi import *
 from controllori import *
 import sympy
 import numpy
