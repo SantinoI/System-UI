@@ -25,7 +25,6 @@ def choose_system(equations):
 
         print("identificato secondo grado")
         auto_val_1_1,auto_val_1_2  = autovalori(equations['y'],equations['y1'])
-        #print(auto_val_1_1, "----",auto_val_1_2)
         auto_val = str(auto_val_1_1) + ", " + str(auto_val_1_2)
         auto_val_1_1,auto_val_1_2 = stability(auto_val_1_1,auto_val_1_2,equations['y1'],equations['y'])
 
