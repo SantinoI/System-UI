@@ -69,8 +69,6 @@ def stability(aut1,aut2,y1,y):
     aut1 = str(aut1)
     aut2 = str(aut2)
     aut1 = aut1.split()[0]
-    print(aut1)
-    print(aut2)
     if(float(y1) < 0 and float(y) > 0 and " " in aut2):  
         aut2 = aut2.rsplit(" ",1)[1]
     else:
