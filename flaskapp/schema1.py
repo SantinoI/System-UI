@@ -8,8 +8,15 @@ def choose_system(equations):
     stabilita1 = ""
     #print(equations)
     if (equations['y2'] == "0"):
-        A= float(equations['y'])
-        B = float(equations['u'])
+        if(equations['y1'] == "1"):
+            print("primo grado y = 1")
+            A = float(equations['y'])/float(equations['y1']) * -1
+            B = float(equations['u'])/float(equations['y1']) * -1
+        else:
+            print("primo grado y != 1")
+            A = float(equations['y'])/float(equations['y1']) * -1
+            B = float(equations['u'])/float(equations['y1']) * -1
+            
         G1 = firstDegree(A,B)
         auto_val = stability1(A)
         if auto_val < 0:
@@ -206,6 +213,7 @@ def schema3_evaluate_controller(equations,time,input,controller):
         ref_signal = ref.evaluate(t,controller["ref"]) 
         error = ref_signal - y
         controller_output = ctrl.evaluate(error, delta_t)
+
         out_G1 = G1.evaluate(controller_output,delta_t)
         out_G2 = G2.evaluate(controller_output - out_G3,delta_t)
         out_G3 = G3.evaluate(out_G1 + out_G2, delta_t)
