@@ -184,7 +184,7 @@ def schema3_evaluate_controller(equations,time,input,controller):
         ctrl = PIDSat(float(controller['kp']),float(controller['ki']),0,float(controller['sat']))
     elif(controller['type'] == 'PID'):
         print("Selezionato controllore: PID")
-        ctrl = PIDSat(float(controller['kp']),float(controller['ki']),float(controller["kd"]),0)
+        ctrl = PID(float(controller['kp']),float(controller['ki']),float(controller["kd"]))
     elif(controller['type'] == 'PID + Sat'):
         print("Selezionato controllore: PID + sat")
         ctrl = PIDSat(float(controller['kp']),float(controller['ki']),float(controller['kd']),float(controller['sat']))
@@ -214,7 +214,7 @@ def schema3_evaluate_controller(equations,time,input,controller):
         ref_signal = ref.evaluate(t,controller["ref"]) 
         error = ref_signal - y
         controller_output = ctrl.evaluate(error, delta_t)
-
+        
         out_G1 = G1.evaluate(controller_output,delta_t)
         out_G2 = G2.evaluate(controller_output - out_G3,delta_t)
         out_G3 = G3.evaluate(out_G1 + out_G2, delta_t)
