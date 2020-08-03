@@ -31,7 +31,6 @@ class secondDegree:
         B1_01 = self.B[1]
         B1_01 =  B1_01.evalf(subs = {self.A[1]: delta_t1})
        
-        #print(float(A1_10),"-", self.x1,"-", float(A1_11),"-", self.x2 ,"-", u ,"-", float(B1_01))
         op1 = A1_10 * self.x1
         op2 = A1_11 * self.x2
         op3 = u * B1_01

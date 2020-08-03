@@ -154,7 +154,6 @@ def schema1_evaluate_controller(equations,time,input,controller):
     ref_array = []
     while t <= int(time):
         ref_signal = ref.evaluate(t,controller["ref"])
-        print(ref_signal)
         error = ref_signal - y
         controller_output = ctrl.evaluate(error, delta_t)
         y = G1.evaluate(controller_output,delta_t)
