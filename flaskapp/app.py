@@ -65,6 +65,14 @@ def input():
             equations['G2']['stabilita'] = stab2
             equations['G3']['stabilita'] = stab3
             return jsonify({"tempi":vettore_tempi,"output":vettore_output,"ref":ref_array,"equations":equations})
+        else:
+            vettore_tempi,vettore_output, auto_val_1, auto_val_2, auto_val_3, stab1, stab2, stab3 = schema3_evaluate(equations,time,input,controller)
+            equations['G1']['autovalori'] = str(auto_val_1)
+            equations['G1']['stabilita'] = stab1
+            equations['G2']['autovalori'] = str(auto_val_2)
+            equations['G2']['stabilita']= stab2
+            equations['G3']['autovalori'] = str(auto_val_3)
+            equations['G3']['stabilita']= stab3
     #createController(controller)
      
     return jsonify({"tempi":vettore_tempi,"output":vettore_output,"equations":equations})
