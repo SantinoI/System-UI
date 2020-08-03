@@ -28,7 +28,7 @@ def choose_system(equations):
             stabilita1 = "Stabile semplciemente"
         print("identificato primo grado")
     else:
-        A,B = sistema(equations['y2'],equations['y1'],equations['y'],equations['u'])
+        A,B = sistema(equations['y2'],equations['y1']/equations['y2'],equations['y']/equations['y2'],equations['u']/equations['y2'])
         G1 = secondDegree(A,B)
 
         print("identificato secondo grado")
