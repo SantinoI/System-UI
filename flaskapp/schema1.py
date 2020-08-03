@@ -215,25 +215,24 @@ def schema3_evaluate_controller(equations,time,input,controller):
 
 
     def schema3_evaluate(equations,time,input):
+        G1,auto_val1,stabilita1,A,B = choose_system(equations['G1'])
+        G2,auto_val2,stabilita2,A2,B2 = choose_system(equations['G2'])
+        G3, auto_val3, stabilita3, A3,B3 = choose_system(equations["G3"])
 
-    G1, auto_val1, stabilita1, A,B = choose_system(equations["G1"])
-    G2, auto_val2, stabilita2, A2,B2 = choose_system(equations["G2"])
-    G3, auto_val3, stabilita3, A3,B3 = choose_system(equations["G3"])
-
-    vettore_tempi = []
-    vettore_output = []
-    delta_t = 1e-3
-    y = 0
-    t = 0
-    ref_array = []
-    out_G3= 0
-    while t <= int(time):
-        out_G1 = G1.evaluate(int(input),delta_t)
-        out_G2 = G2.evaluate(int(input) - out_G3,delta_t)
-        out_G3 = G3.evaluate(out_G1 + out_G2, delta_t)
-        y = out_G1 + out_G2
-        vettore_tempi.append(t)
-        vettore_output.append(float(y))
-        t = t + delta_t
-    return vettore_tempi, vettore_output, auto_val1, auto_val2, auto_val3, stabilita1, stabilita2, stabilita3
+        vettore_tempi = []
+        vettore_output = []
+        delta_t = 1e-3
+        y = 0
+        t = 0
+        ref_array = []
+        out_G3= 0
+        while t <= int(time):
+            out_G1 = G1.evaluate(int(input),delta_t)
+            out_G2 = G2.evaluate(int(input) - out_G3,delta_t)
+            out_G3 = G3.evaluate(out_G1 + out_G2, delta_t)
+            y = out_G1 + out_G2
+            vettore_tempi.append(t)
+            vettore_output.append(float(y))
+            t = t + delta_t
+        return vettore_tempi, vettore_output, auto_val1, auto_val2, auto_val3, stabilita1, stabilita2, stabilita3
 
